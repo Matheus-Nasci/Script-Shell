@@ -1,0 +1,22 @@
+#!/bin/bash
+sudo apt update && sudo apt upgrade
+java -version
+if [ $? -eq 0 ];
+then
+	echo "java instalado"
+else
+	echo "java nao instalado"
+	echo "gostaria de instalar o java? (s/n)"
+	read inst
+	if [ \"$inst\" == \"s\" ];
+	then
+		sudo apt install default-jre -y
+	fi
+fi
+
+cd /home/ubuntu/Desktop
+git clone https://github.com/Grupo8-2ADSB-TotemSystem/Java_Totem_System.git
+cd Java_Totem_System
+cd Totem_System
+cd target
+java -jar Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
