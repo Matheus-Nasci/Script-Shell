@@ -16,6 +16,10 @@ fi
 
 cd /home/ubuntu/Desktop
 git clone https://github.com/Grupo8-2ADSB-TotemSystem/Java_Totem_System.git
+git clone https://github.com/Matheus-Nasci/TotemSystem.git
+cd TotemSystem
+npm i
+cd..
 cd Java_Totem_System
 cd Totem_System
 cd target
