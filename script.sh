@@ -1,5 +1,4 @@
 #!/bin/bash
-chmod 777 script.sh
 sudo apt update && sudo apt upgrade -y
 java --version
 if [ $? -eq 0 ];
@@ -14,11 +13,6 @@ else
 	fi
 fi
 
-cd /home/ubuntu/Desktop
-git clone https://github.com/Grupo8-2ADSB-TotemSystem/Java_Totem_System.git
-cd Java_Totem_System/Totem_System/target
-java -jar Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
-cd ..
 docker --version
 if [ $? -eq 0 ];
 then
@@ -34,8 +28,12 @@ fi
 
 sudo systemctl start docker
 sudo sysstemctl enable docker
-sudo docker pull mysql:5.7
-sudo docker run -d -p 3306:3306 --name containerDB -e "MYSQL-DATABASE-totembd" -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:5.7
-sudo docker ps -a
-docker exec -it containerDB bash
-mysql -u root -p
+cd ~/docker-mysql
+sudo docker-compose up -d
+sudo docker start CONTAINER_TOTEMDB
+sudo docker exec -it $(sudo docker ps -aqf "name=CONTAINER_TOTEMDB") mysql -u root -p
+
+cd ~/Desktop
+git clone https://github.com/Grupo8-2ADSB-TotemSystem/Java_Totem_System.git
+cd Java_Totem_System/Totem_System/target
+java -jar Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
