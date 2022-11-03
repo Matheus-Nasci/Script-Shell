@@ -1,4 +1,5 @@
 #!/bin/bash
+chmod 777 script.sh
 sudo apt update && sudo apt upgrade -y
 java --version
 if [ $? -eq 0 ];
