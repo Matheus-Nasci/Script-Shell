@@ -34,6 +34,8 @@ else
 		sudo apt install docker.io -y
 
 		echo "Iniciando Docker"
+		echo "Caminho: "
+		pwd
 		sudo systemctl start docker
 		sudo systemctl enable docker
 		cd ~/Script-VM/docker-mysql
