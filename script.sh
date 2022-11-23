@@ -40,7 +40,7 @@ then
 		sudo systemctl enable docker
 		sudo docker-compose up -d
 		sudo docker start CONTAINER_TOTEMDB
-		sudo docker exec -it $(sudo docker ps -aqf "name=containerDB") mysql -u root -p -B -N -e "
+		sudo docker exec -it $(sudo docker ps -aqf "name=containerDB") bash mysql -u root -p -B -N -e "
 			create database totembd;
 
 			use totembd;
@@ -142,7 +142,7 @@ then
 			foreign key (fkTotem) references totem(idTotem),
 			foreign key (fkEmpresa) references empresa(idEmpresa)
 			); "
-			echo Banco de dados Criado com Sucesso!
+		echo Banco de dados Criado com Sucesso!
 else
 	echo "Gostaria de instalar o Docker e Banco TotomSystem? (s/n)"
 	read inst
@@ -257,10 +257,7 @@ else
 			foreign key (fkTotem) references totem(idTotem),
 			foreign key (fkEmpresa) references empresa(idEmpresa)
 			); "
+
 			echo Banco de dados Criado com Sucesso!
 	fi
 fi
-
-sudo docker build -t dockerfile .
-sudo docker run -it --rm --name totem-system-java Dockerfile
-java -jar Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
