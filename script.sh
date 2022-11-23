@@ -41,6 +41,8 @@ then
 		sudo docker-compose up -d
 		sudo docker start CONTAINER_TOTEMDB
 		sudo docker exec -it $(sudo docker ps -aq) mysql -u root -p -B -N -e "
+			create database totembd;
+
 			use totembd;
 
 			create table endereco (
