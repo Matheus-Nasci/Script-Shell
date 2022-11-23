@@ -40,10 +40,9 @@ else
 	if [ \"$inst\" == \"s\" ];
 	then
 		sudo apt install docker.io -y
+		sudo apt install docker-compose -y
 
 		echo "Iniciando Aplicação TotemSystem"
-		echo "Caminho: "
-		pwd
 		sudo systemctl start docker
 		sudo systemctl enable docker
 		sudo docker-compose up -d
