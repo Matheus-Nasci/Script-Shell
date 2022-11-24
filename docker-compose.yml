@@ -17,6 +17,6 @@ services:
       image: openjdk-11-jre
       build:
       context: . 
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
       container_name: CONTAINER_JAVA-TOTEMSYSTEM
 
