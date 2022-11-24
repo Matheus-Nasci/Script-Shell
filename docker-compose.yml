@@ -13,3 +13,10 @@ services:
       - '3306'
     volumes:
       - './.mysql-data/db:/var/lib/mysql'
+    jre-default:
+      image: openjdk-11-jre
+      build:
+      context: . 
+      dockerfile: Dockerfile
+      container_name: CONTAINER_JAVA-TOTEMSYSTEM
+

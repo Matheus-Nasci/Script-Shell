@@ -4,14 +4,15 @@ sudo passwd
 
 echo "Deseja instalar a interface gráfica? (s/n)"
 read inst
+
+echo "Você já possui a interface gráfica? (s/n)"
+read interface
+
 if [ \"$inst\" == \"s\" ];
 then
 		sudo apt-get install xrdp lxde-core lxde tigervnc-standalone-server -y
-		wget https://github.com/Grupo8-2ADSB-TotemSystem/Jar-TotemSystem/raw/main/GUI_Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
-
 else
 		echo "Atualizando Pacotes"
-		wget https://github.com/Grupo8-2ADSB-TotemSystem/Jar-TotemSystem/raw/main/CLI_Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
 fi
 
 sudo apt update && sudo apt upgrade -y
@@ -260,4 +261,13 @@ else
 
 			echo Banco de dados Criado com Sucesso!
 	fi
+fi
+
+if [ \"$interface\" == \"s\" ];
+	then
+		wget https://github.com/Grupo8-2ADSB-TotemSystem/Jar-TotemSystem/raw/main/GUI_Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
+		java -jar Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
+	else
+		wget https://github.com/Grupo8-2ADSB-TotemSystem/Jar-TotemSystem/raw/main/CLI_Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
+		java -jar Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
 fi
