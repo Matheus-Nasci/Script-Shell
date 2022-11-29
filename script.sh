@@ -39,7 +39,6 @@ then
 	echo "Iniciando Aplicação Banco De Dados TotemSystem"
 		sudo systemctl start docker
 		sudo systemctl enable docker
-		sudo docker-compose up -d
 		sudo docker start CONTAINER_TOTEMDB
 		sudo docker exec -it $(sudo docker ps -aq) mysql -u root -p -B -N -e "
 			create database totembd;
@@ -152,9 +151,11 @@ else
 		sudo apt install docker.io -y
 
 		echo "Iniciando Aplicação Banco De Dados TotemSystem"
+		sudo apt install docker.io -y
 		sudo systemctl start docker
 		sudo systemctl enable docker
-		sudo docker-compose up -d
+		sudo docker pull mysql:8.0
+		sudo docker run -d -p 3306:3306 --name AnimixDocker -e "MYSQL_DATABASE=animix" -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:8.0
 		sudo docker start CONTAINER_TOTEMDB
 		sudo docker exec -it $(sudo docker ps -aq) mysql -u root -p -B -N -e "
 			create database totembd;
