@@ -2,8 +2,6 @@
 echo "Iniciando Aplicação Banco De Dados TotemSystem"
 
 sudo docker exec -it $(sudo docker ps -aq) mysql -u root -p -B -N -e "
-	create database totembd;
-
 	use totembd
 	create table endereco (
 	idEndereco int primary key auto_increment,
