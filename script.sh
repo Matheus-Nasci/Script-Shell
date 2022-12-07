@@ -34,11 +34,11 @@ docker --version
 
 if [ $? -eq 0 ];
 then
-	echo "Docker já está instalado"
 
 	echo "Iniciando Aplicação Banco De Dados TotemSystem"
 		sudo systemctl start docker
 		sudo systemctl enable docker
+		sudo docker pull mysql:8.0
 		sudo docker start CONTAINER_TOTEMDB
 		sudo docker exec -it $(sudo docker ps -aq) mysql -u root -p -B -N -e "
 			create database totembd;
@@ -259,16 +259,20 @@ else
 			foreign key (fkTotem) references totem(idTotem),
 			foreign key (fkEmpresa) references empresa(idEmpresa)
 			); "
-
+wget
 			echo Banco de dados Criado com Sucesso!
 	fi
 fi
 
 if [ \"$interface\" == \"s\" ];
 	then
-		wget https://github.com/Grupo8-2ADSB-TotemSystem/Jar-TotemSystem/raw/main/GUI_Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
+		git clone https://github.com/Grupo8-2ADSB-TotemSystem/Jar-TotemSystem/raw/main/GUI_Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
+		sudo docker build -t dockerfile .
+		sudo docker run -it --rm --name totem-system-java dockerfile
 		java -jar Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
 	else
-		wget https://github.com/Grupo8-2ADSB-TotemSystem/Jar-TotemSystem/raw/main/CLI_Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
+		git clone https://github.com/Grupo8-2ADSB-TotemSystem/Jar-TotemSystem/raw/main/CLI_Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
+		sudo docker build -t dockerfile .
+		sudo docker run -it --rm --name totem-system-java dockerfile
 		java -jar Totem_System-1.0-SNAPSHOT-jar-with-dependencies.jar
 fi
